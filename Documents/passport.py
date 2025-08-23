@@ -1,7 +1,13 @@
-from Documents import Documents
 import random, string
-import utils
-from utils import wait
+
+from Documents import Documents
+from Utils.utils import wait
+
+import Utils.Data.credentials
+import Utils.Data.faces
+
+creds = Utils.Data.credentials
+faces = Utils.Data.faces
 
 # Passport
 class Passport(Documents):
@@ -19,10 +25,10 @@ class Passport(Documents):
         if random.randint(1, 10) == 1 and not self.f_name == "Robert":
             fake_info = self.f_name
             while fake_info == self.f_name:
-                if self.f_name in utils.b_names:
-                    fake_info = random.choice(utils.b_names)
+                if self.f_name in creds.b_names:
+                    fake_info = random.choice(creds.b_names)
                 else:
-                    fake_info = random.choice(utils.g_names)
+                    fake_info = random.choice(creds.g_names)
             print(f"│ {self.l_name + ', ' + fake_info:32} │")
             self.has_dis = "forgery"
 
@@ -30,7 +36,7 @@ class Passport(Documents):
         elif random.randint(1, 10) == 1 and not self.f_name == "Robert":
             fake_info = self.l_name
             while fake_info == self.l_name:
-                fake_info = random.choice(utils.l_names)
+                fake_info = random.choice(creds.l_names)
             print(f"│ {fake_info + ', ' + self.f_name:32} │")
             self.has_dis = "forgery"
 
@@ -42,10 +48,10 @@ class Passport(Documents):
 
         # Portrait
         if self.sex == "M":
-            for line in random.choice(utils.m_portraits):
+            for line in random.choice(faces.m_portraits):
                 print(f"│  | {line}{"|":9} │")
         else:
-            for line in random.choice(utils.f_portraits):
+            for line in random.choice(faces.f_portraits):
                 print(f"│  | {line}{"|":9} │")
 
 
@@ -72,7 +78,7 @@ class Passport(Documents):
         if random.randint(1, 10) == 1 and self.day >= 3:
             fake_info = self.planet
             while fake_info == self.planet:
-                fake_info = random.choice(utils.planets)
+                fake_info = random.choice(creds.planets)
             print(f"│ {fake_info:20} ", end="")
             self.has_dis = "forgery"
 

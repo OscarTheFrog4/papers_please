@@ -1,9 +1,3 @@
-import random
-import utils
-from utils import wait
-
-
-
 
 # Dialog
 class Dialog:

@@ -1,4 +1,4 @@
-from utils import wait
+from Utils.utils import wait
 # Day
 class Day:
     def __init__(self, nexa, is_running, food, heat):

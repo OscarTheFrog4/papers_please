@@ -1,8 +1,9 @@
 from Dialog import Dialog
-from utils import wait, dialog
-import utils
+from Utils.Functions.wait import wait
+from Utils.Functions.dialog import dialog
+import Utils.utils
 import random
-
+utils = Utils.utils
 class MidDialog(Dialog):
 
     @staticmethod
@@ -49,7 +50,7 @@ class MidDialog(Dialog):
                 while fake_info == self.l_name:
                     fake_info = random.choice(utils.l_names)
                 print(f"{self.l_name}'")
-                self.has_dis = forgery
+                self.has_dis = "forgery"
 
             # Real last name
             else:

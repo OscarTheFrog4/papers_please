@@ -1,4 +1,4 @@
-from utils import wait
+from Utils.utils import wait
 #Decision
 class Decision:
     def __init__(self, has_dis, nexa, day, loop, planet, event_occurred, citations):

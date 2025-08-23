@@ -1,4 +1,4 @@
-from utils import wait, dialog
+from Utils.utils import wait, dialog
 from Dialog import Dialog
 
 class PreDialog(Dialog):
@@ -122,7 +122,7 @@ class PreDialog(Dialog):
                     input("(Enter anything to continue): ")
             case 9:
                 if self.loop > 2:
-
+                    pass
 
 
         return self.event_occurred

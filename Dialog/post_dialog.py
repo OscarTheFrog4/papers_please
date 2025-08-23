@@ -1,4 +1,4 @@
-from utils import wait, dialog
+from Utils.Functions.wait import wait
 from Dialog import Dialog
 
 class PostDialog(Dialog):

@@ -1,4 +1,4 @@
-from utils import wait
+from Utils.utils import wait
 
 
 class Notice:

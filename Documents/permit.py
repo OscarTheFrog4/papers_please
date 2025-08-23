@@ -1,6 +1,6 @@
 from Documents import Documents
-from utils import wait, stutter
-import random
+from Utils.utils import stutter
+
 class Permit(Documents):
 
     def print(self):

@@ -2,6 +2,11 @@ It is good practice to use self.(variable) as that is how __init__'s initialize 
 
 Move hard coded strings outide code.
 
+import (module) will effectively run a module's code by importing it. This is how you can set
+variables using import (method)
+from (module) import (function) will only import a function. Using this, code will not be
+run unlike when you import a module like import (module). You are solely taking the function
+
 __init__ is not attached to any function inside of its class. Rather, it executes no
 matter what, as long as the class is called, regardless of the function called. Therefore,
 no addition code is needed to call the init function.

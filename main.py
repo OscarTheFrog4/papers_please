@@ -1,4 +1,4 @@
-import time
+import time, random
 
 from Dialog import *
 from Dialog.mid_dialog import MidDialog
@@ -7,10 +7,11 @@ from Dialog.pre_dialog import PreDialog
 from Documents.passport import Passport
 from Documents.pda import PDA
 from Documents.permit import Permit
-from OtherClasses.applicant_info import ApplicantInfo
+from OtherClasses.make_applicant import ApplicantInfo
 from OtherClasses.day import Day
 from OtherClasses.decision import Decision
 from OtherClasses.notice import Notice
+from Utils.utils import wait
 
 
 def main():

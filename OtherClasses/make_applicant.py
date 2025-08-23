@@ -1,6 +1,7 @@
 import random
-import utils
+import Utils.Data.credentials
 import string
+creds = Utils.Data.credentials
 
 class ApplicantInfo:
     def __init__(self, day, loop, event_occurred):
@@ -11,18 +12,18 @@ class ApplicantInfo:
 
 
         # Establishing Applicant Information
-        self.planet = random.choice(utils.planets)
-        self.l_name = random.choice(utils.l_names)
+        self.planet = random.choice(creds.planets)
+        self.l_name = random.choice(creds.l_names)
         self.sex = random.choice(["M", "F"])
         self.has_dis = False
 
-        self.dob = f"{random.choice(utils.months)} {random.randint(1, 28)}, {random.randint(2910, 2970)}"
-        self.exp = f"{random.choice(utils.months)} {random.randint(1, 28)}, {random.randint(2990, 3010)}"
+        self.dob = f"{random.choice(creds.months)} {random.randint(1, 28)}, {random.randint(2910, 2970)}"
+        self.exp = f"{random.choice(creds.months)} {random.randint(1, 28)}, {random.randint(2990, 3010)}"
 
         if self.sex == "M":
-            self.f_name = random.choice(utils.b_names)
+            self.f_name = random.choice(creds.b_names)
         else:
-            self.f_name = random.choice(utils.g_names)
+            self.f_name = random.choice(creds.g_names)
 
         self.pass_num = ""
         for char in range(11):
@@ -30,7 +31,7 @@ class ApplicantInfo:
         self.pass_num = self.pass_num[0:5] + "-" + self.pass_num[6:11]
 
 
-        self.purpose = random.choice(utils.reasons)
+        self.purpose = random.choice(creds.reasons)
         match self.purpose:
             case "Asylum":
                 self.duration = random.choice(("12 months", "Forever", "9 months"))
@@ -44,7 +45,7 @@ class ApplicantInfo:
         match self.day:
             case 1:
                 if random.choice([True, False]):
-                    self.planet = random.choice(utils.planets)
+                    self.planet = random.choice(creds.planets)
                     if self.planet != "Nexus Harbor":
                         self.has_dis = True
                         if loop > 1 and not event_occurred:

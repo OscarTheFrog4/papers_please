@@ -1,7 +1,9 @@
 from Documents import Documents
 import random
-from utils import wait, stutter
-import utils
+from Utils.utils import wait, stutter
+import Utils.utils
+utils = Utils.utils
+
 class PDA(Documents):
     def print(self):
 
