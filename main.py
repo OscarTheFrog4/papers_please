@@ -1,6 +1,5 @@
 import time, random
 
-from Dialog import *
 from Dialog.mid_dialog import MidDialog
 from Dialog.post_dialog import PostDialog
 from Dialog.pre_dialog import PreDialog
@@ -11,11 +10,10 @@ from OtherClasses.make_applicant import ApplicantInfo
 from OtherClasses.day import Day
 from OtherClasses.decision import Decision
 from OtherClasses.notice import Notice
-from Utils.utils import wait
+from Utils.Functions.wait import wait
 
 
 def main():
-
     # Establish non-personal variables
     day = 7
     nexa = 0

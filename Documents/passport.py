@@ -1,15 +1,15 @@
-import random, string
+import random
+import string
 
 from Documents import Documents
-from Utils.utils import wait
-
+from Utils.Functions.wait import wait
 import Utils.Data.credentials
 import Utils.Data.faces
 
 creds = Utils.Data.credentials
 faces = Utils.Data.faces
 
-# Passport
+
 class Passport(Documents):
 
     def print(self):

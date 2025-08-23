@@ -1,4 +1,4 @@
-from Utils.utils import wait
+from Utils.Functions.wait import wait
 
 
 class Notice:

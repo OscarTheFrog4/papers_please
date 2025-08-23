@@ -1,5 +1,3 @@
-
-# Dialog
 class Dialog:
     def __init__(self, f_name, l_name, planet, has_dis, purpose, duration, day, event_occurred, loop, nexa, verdict):
         self.f_name = f_name

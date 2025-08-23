@@ -1,26 +1,27 @@
-from Documents import Documents
 import random
-from Utils.utils import wait, stutter
-import Utils.utils
-utils = Utils.utils
+
+from Documents import Documents
+from Utils.Functions.wait import wait
+from Utils.Functions.stutter import stutter
+import Utils.Data.credentials
+
+creds = Utils.Data.credentials
 
 class PDA(Documents):
     def print(self):
-
         wait(0.5, 0)
         stutter()
         wait(0.5, 0)
-
         print(f"   ──────────────────────────────────────")
 
         #Chance of Fake Name
         if random.randint(1, 5) == 1:
             fake_info = self.f_name
             while fake_info == self.f_name:
-                if self.f_name in utils.b_names:
-                    fake_info = random.choice(utils.b_names)
-                if self.f_name in utils.g_names:
-                    fake_info = random.choice(utils.g_names)
+                if self.f_name in creds.b_names:
+                    fake_info = random.choice(creds.b_names)
+                if self.f_name in creds.g_names:
+                    fake_info = random.choice(creds.g_names)
             print(f"  /{fake_info + " " + self.l_name + "'s PDA":^34}/‾\\ \\")
             self.has_dis = True
 

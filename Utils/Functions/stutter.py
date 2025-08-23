@@ -1,6 +1,7 @@
 import random
 
-from wait import wait
+from Utils.Functions.wait import wait
+
 
 def stutter():
     if random.randint(1, 10) == 1:

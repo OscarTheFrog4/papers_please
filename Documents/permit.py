@@ -1,5 +1,5 @@
 from Documents import Documents
-from Utils.utils import stutter
+from Utils.Functions.stutter import stutter
 
 class Permit(Documents):
 

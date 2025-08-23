@@ -1,5 +1,7 @@
-from Utils.utils import wait, dialog
 from Dialog import Dialog
+from Utils.Functions.wait import wait
+from Utils.Functions.dialog import dialog
+
 
 class PreDialog(Dialog):
     def __init__(self, f_name, l_name, planet, has_dis, purpose, duration, day, event_occurred, loop, nexa, verdict):
@@ -67,7 +69,7 @@ class PreDialog(Dialog):
                         dialog("inspector", "I guess if you were idiotic enough to pick this option,")
                         dialog("inspector", "you'll have to restart this day.")
                         wait(4, 0)
-                        dialog("inspector", "...Idiot.", "scoffs")
+                        dialog("inspector", "*scoffs* ...Idiot.")
                         wait(2, 0)
 
                     self.event_occurred = "dead"

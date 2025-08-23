@@ -1,5 +1,7 @@
 from Utils.Functions.wait import wait
+from Utils.Functions.dialog import dialog
 from Dialog import Dialog
+
 
 class PostDialog(Dialog):
 

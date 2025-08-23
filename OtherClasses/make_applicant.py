@@ -1,7 +1,9 @@
 import random
-import Utils.Data.credentials
 import string
+
+import Utils.Data.credentials
 creds = Utils.Data.credentials
+
 
 class ApplicantInfo:
     def __init__(self, day, loop, event_occurred):

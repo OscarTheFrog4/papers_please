@@ -1,9 +1,12 @@
+import random
+
 from Dialog import Dialog
 from Utils.Functions.wait import wait
 from Utils.Functions.dialog import dialog
-import Utils.utils
-import random
-utils = Utils.utils
+import Utils.Data.credentials
+creds = Utils.Data.credentials
+
+
 class MidDialog(Dialog):
 
     @staticmethod
@@ -33,10 +36,10 @@ class MidDialog(Dialog):
             if random.randint(1, 10) == 1:
                 fake_info = self.f_name
                 while fake_info == self.f_name:
-                    if self.f_name in utils.b_names:
-                        fake_info = random.choice(utils.b_names)
-                    if self.f_name in utils.g_names:
-                        fake_info = random.choice(utils.g_names)
+                    if self.f_name in creds.b_names:
+                        fake_info = random.choice(creds.b_names)
+                    if self.f_name in creds.g_names:
+                        fake_info = random.choice(creds.g_names)
                 print(f"<< '{fake_info} ", end="")
                 self.has_dis = "forgery"
 
@@ -48,7 +51,7 @@ class MidDialog(Dialog):
             if random.randint(1, 10) == 1:
                 fake_info = self.l_name
                 while fake_info == self.l_name:
-                    fake_info = random.choice(utils.l_names)
+                    fake_info = random.choice(creds.l_names)
                 print(f"{self.l_name}'")
                 self.has_dis = "forgery"
 
@@ -69,7 +72,7 @@ class MidDialog(Dialog):
             if random.randint(1, 10) == 1:
                 self.fake_info = self.purpose
                 while self.fake_info == self.purpose:
-                    self.fake_info = random.choice(utils.reasons)
+                    self.fake_info = random.choice(creds.reasons)
                 self.has_dis = "forgery"
 
             # Natural dialog
@@ -91,9 +94,9 @@ class MidDialog(Dialog):
 
             # Chance of Responding With a Fake Duration
             if random.randint(1, 10) == 1:
-                fake_info = random.choice(utils.durations)
+                fake_info = random.choice(creds.durations)
                 while fake_info == self.duration:
-                    fake_info = random.choice(utils.durations)
+                    fake_info = random.choice(creds.durations)
                 print(f"{fake_info}'")
                 self.has_dis = "forgery"
 

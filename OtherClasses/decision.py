@@ -1,8 +1,8 @@
-from Utils.utils import wait
-#Decision
+from Utils.Functions.wait import wait
+
+
 class Decision:
     def __init__(self, has_dis, nexa, day, loop, planet, event_occurred, citations):
-
         self.has_dis = has_dis
         self.nexa = nexa
         self.day = day
@@ -13,10 +13,8 @@ class Decision:
         self.citations = citations
 
     def decide(self):
-
         # Ask player to accept or deny applicant
         wait(1, 1)
-
 
         if self.day <= 7:
             self.verdict = input("Accept or deny applicant?: ").lower()
