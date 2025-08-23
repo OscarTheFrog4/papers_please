@@ -14,8 +14,9 @@ from Utils.Functions.wait import wait
 
 
 def main():
+
     # Establish non-personal variables
-    day = 7
+    day = 1
     nexa = 0
     old_nexa = 0
     food = 3
@@ -26,8 +27,14 @@ def main():
     event_occurred = False
     verdict = None
 
+    admin = input("Admin? Enter nothing for no, and what day you want to start at for yes: ")
+    if admin:
+        day = int(admin)
+
     # Print Daily Notice
-   # Notice(day).print()
+    if not admin:
+        Notice(day).print()
+
 
     start_time = time.time()
 
