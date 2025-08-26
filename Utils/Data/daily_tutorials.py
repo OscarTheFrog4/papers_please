@@ -7,8 +7,6 @@ tutorials = {
 "inconsistencies at all, accept the applicant. If your verdict is",
 "incorrect, you will receive a citation."),
 
-2: "",
-
 3:(
 "* Astral Permits *",
 "All foreign applicants need to have a valid Astral Permit. If a",
@@ -18,8 +16,7 @@ tutorials = {
 4:(
 "* PDAs *",
 "All native applicants need to have a valid PDA. If an applicant",
-"from the Nexus Harbor does not have an Astral Permit, they are to",
-"be denied."
+"from the Nexus Harbor does not have a PDA, they are to be denied"
 ),
 
 8:(

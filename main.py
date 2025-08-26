@@ -11,12 +11,13 @@ from OtherClasses.day import Day
 from OtherClasses.decision import Decision
 from OtherClasses.notice import Notice
 from Utils.Functions.wait import wait
+import pygame
 
 
 def main():
 
     # Establish non-personal variables
-    day = 1
+    day = 7
     nexa = 0
     old_nexa = 0
     food = 3
@@ -26,6 +27,12 @@ def main():
     is_running = True
     event_occurred = False
     verdict = None
+    accepted_grant = None
+
+    sound_file = "Golden.mp3"
+    pygame.mixer.init()
+    pygame.mixer.music.load(sound_file)
+    pygame.mixer.music.play()
 
     admin = input("Admin? Enter nothing for no, and what day you want to start at for yes: ")
     if admin:
@@ -33,7 +40,7 @@ def main():
 
     # Print Daily Notice
     if not admin:
-        Notice(day).print()
+        Notice(day, accepted_grant).print()
 
 
     start_time = time.time()
@@ -67,7 +74,7 @@ def main():
             event_occurred = False
 
             # Daily Notice
-            Notice(day).print()
+            Notice(day, accepted_grant).print()
             start_time = time.time()
             nexa = old_nexa
 
@@ -75,8 +82,18 @@ def main():
             loop = 1
             continue
 
+        # When event_occurred is "continue", it counts as the event and skips that applicant's document sequence.
         elif event_occurred == "continue":
             event_occurred = True
+            print("event_occurred was set to True from continue")
+            wait(0, 30)
+            loop += 1
+            continue
+
+        # When event_occurred is "skip", it doesn't count as the event and skips that applicant's document sequence.
+        elif event_occurred == "skip":
+            event_occurred = False
+            print("event_occurred was set to False from skip")
             wait(0, 30)
             loop += 1
             continue
@@ -86,7 +103,7 @@ def main():
 
         # Chance of applicant missing entry permit
         if day >= 3 and not planet == "Nexus Harbor":
-            if random.randint(1, 10) == 1 or f_name == "Robert":
+            if random.randint(1, 10) == 1:
                 has_dis = True
             else:
                 has_dis = Permit(f_name, l_name, planet, dob, exp, sex, pass_num, has_dis, purpose, duration, day, event_occurred).print()
@@ -102,18 +119,22 @@ def main():
 
         has_dis, event_occurred = MidDialog(f_name, l_name, planet, has_dis, purpose, duration, day, event_occurred, loop, nexa, verdict).interrogate()
         has_dis, event_occurred = MidDialog(f_name, l_name, planet, has_dis, purpose, duration, day, event_occurred, loop, nexa, verdict).event()
-        # Decision
-        nexa, verdict, citations = Decision(has_dis, nexa, day, loop, planet, event_occurred, citations).decide()
 
+        # Decision
+        nexa, verdict, citations, accepted_grant = Decision(has_dis, nexa, day, loop, planet, event_occurred, citations, accepted_grant).decide()
+        print(f"This is main.py right after the Decision function!")
+        print(f"accepted_grant is {accepted_grant}")
         # Dialog after the player enters their verdict
-        event_occurred = PostDialog(f_name, l_name, planet, has_dis, purpose, duration, day, event_occurred, loop, nexa, verdict).remark()
+        event_occurred, nexa = PostDialog(f_name, l_name, planet, has_dis, purpose, duration, day, event_occurred, loop, nexa, verdict).remark()
+
+        wait(1, 30)
 
 
         # Daily Evaluation
         loop += 1
-        if time.time() - start_time > 90:
+        if time.time() - start_time > 1 and event_occurred == True:
 
-            nexa, food, heat, is_running = Day(nexa, is_running, food, heat).evaluate_day()
+            nexa, food, heat, is_running, event_occurred = Day(nexa, is_running, food, heat, event_occurred).evaluate_day()
 
             # Reset Day
             event_occurred = False
@@ -122,9 +143,10 @@ def main():
             loop = 1
 
             # Daily Notice
-            Notice(day).print()
+            Notice(day, accepted_grant).print()
 
             start_time = time.time()
 
 if __name__ == "__main__":
+
     main()

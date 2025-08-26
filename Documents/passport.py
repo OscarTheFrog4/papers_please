@@ -3,10 +3,10 @@ import string
 
 from Documents import Documents
 from Utils.Functions.wait import wait
-import Utils.Data.credentials
+import Utils.Data.collections
 import Utils.Data.faces
 
-creds = Utils.Data.credentials
+creds = Utils.Data.collections
 faces = Utils.Data.faces
 
 
@@ -33,7 +33,7 @@ class Passport(Documents):
             self.has_dis = "forgery"
 
         # Chance for Wrong Last Name
-        elif random.randint(1, 10) == 1 and not self.f_name == "Robert":
+        elif random.randint(1, 10) == 1 and not self.l_name == "Grant":
             fake_info = self.l_name
             while fake_info == self.l_name:
                 fake_info = random.choice(creds.l_names)
@@ -54,7 +54,6 @@ class Passport(Documents):
             for line in random.choice(faces.f_portraits):
                 print(f"│  | {line}{"|":9} │")
 
-
         # Other Passport Information
         print(f"│   ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾          │")
         print(f"│ [DOB] {self.dob:27}│")
@@ -68,7 +67,6 @@ class Passport(Documents):
                 self.fake_info = "M"
             print(f"│ [SEX] {self.fake_info:27}│")
             self.has_dis = "forgery"
-
         # Correct sex
         else:
             print(f"│ [SEX] {self.sex:27}│")

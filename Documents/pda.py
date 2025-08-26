@@ -3,9 +3,9 @@ import random
 from Documents import Documents
 from Utils.Functions.wait import wait
 from Utils.Functions.stutter import stutter
-import Utils.Data.credentials
+import Utils.Data.collections
 
-creds = Utils.Data.credentials
+creds = Utils.Data.collections
 
 class PDA(Documents):
     def print(self):
@@ -23,7 +23,7 @@ class PDA(Documents):
                 if self.f_name in creds.g_names:
                     fake_info = random.choice(creds.g_names)
             print(f"  /{fake_info + " " + self.l_name + "'s PDA":^34}/‾\\ \\")
-            self.has_dis = True
+            self.has_dis = "forgery"
 
         # Real Name
         else:

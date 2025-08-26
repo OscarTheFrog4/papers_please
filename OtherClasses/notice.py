@@ -10,8 +10,9 @@ tutorials = Utils.Data.daily_tutorials.tutorials
 
 
 class Notice:
-    def __init__(self, day):
+    def __init__(self, day, accepted_grant):
         self.day = day
+        self.accepted_grant = accepted_grant
 
     def print(self):
         print("┌──────────────────────────────┐")
@@ -24,12 +25,28 @@ class Notice:
         print("│ Agent,                       │")
 
         # Print notice body and instructions based on day.
-        for line in notices.get(self.day):
-            print(line)
-        input("(Enter anything to continue): ")
-        wait(1, 30)
+        if not self.accepted_grant and self.day == 6:
+            print("│ I must admit I am very       │")
+            print("│ dissapointed. Yesterday, you │")
+            print("│ denied Robert Grant. He was  │")
+            print("│ about to provide very        │")
+            print("│ important information for    │")
+            print("│ the Nexus Harbor planetary   │")
+            print("│ government. Let this not     │")
+            print("│ happen again, for there are  │")
+            print("│ others waiting to take your  │")
+            print("│ place.                       │")
+            print("└──────────────────────────────┘")
+        else:
+            for line in notices.get(self.day):
+                print(line)
+            input("(Enter anything to continue): ")
+            wait(1, 30)
+
         if tutorials.get(self.day):
             for line in tutorials.get(self.day):
                 print(line)
-        input("(Enter anything to continue): ")
-        wait(1, 30)
+            input("(Enter anything to continue): ")
+            wait(1, 30)
+        else:
+            wait(1, 0)

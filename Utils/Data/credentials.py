@@ -1,7 +1,0 @@
-planets = ("Spectra Confederacy", "Cygnus", "Arkonia", "Velorum", "Chargona", "Nexus Harbor",  "Nexus Harbor")
-b_names = ("Lazarus", "Saitama")
-g_names = ("Clarafina", "Aurora", "Ava")
-l_names = ("Valtor", "Charius", "Dairox", "Lendrivax")
-months = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
-reasons = ("Asylum", "Visiting Persons", "Immigration", "Tourism")
-durations = ("1 week", "2 weeks", "3 months", "6 months")

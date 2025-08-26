@@ -2,17 +2,18 @@ from Utils.Functions.wait import wait
 
 
 class Day:
-    def __init__(self, nexa, is_running, food, heat):
+    def __init__(self, nexa, is_running, food, heat, event_occurred):
 
         self.nexa = nexa
         self.is_running = is_running
         self.food = food
         self.heat = heat
+        self.event_ocurred = event_occurred
 
         wait(2, 30)
 
     @staticmethod
-    def needs(need, price, var, nexa, cause, is_running):
+    def needs(need, price, var, nexa, cause, is_running, event_occurred):
 
         # Satisfy needs
         if nexa >= price:
@@ -36,9 +37,9 @@ class Day:
         if var == 0:
             print(f"You died of {cause}!")
             input("(Enter anything to continue): ")
-            is_running = False
+            event_occurred = "dead"
 
-        return nexa, var, is_running
+        return nexa, var, is_running, event_occurred
 
     def evaluate_day(self):
 
@@ -66,18 +67,15 @@ class Day:
 
         wait(1, 0)
 
-        self.nexa, self.food, self.is_running = self.needs("food", 6, self.food, self.nexa, "starvation", self.is_running)
-        self.nexa, self.heat, self.is_running = self.needs("heat", 4, self.heat, self.nexa, "the cold", self.is_running)
-
-
-
-        if self.heat == 0:
-            print("You died of the cold!")
-            self.is_running = "dead"
+        self.nexa, self.food, self.is_running, self.event_occurred = self.needs("food", 7, self.food, self.nexa, "starvation", self.is_running, self.event_ocurred)
+        self.nexa, self.heat, self.is_running, self.event_occurred = self.needs("heat", 5, self.heat, self.nexa, "the cold", self.is_running, self.event_ocurred)
 
         input("(Enter anything to continue): ")
         wait(0, 30)
 
-        return self.nexa, self.food, self.heat, self.is_running
+        return self.nexa, self.food, self.heat, self.is_running, self.event_ocurred
+
+
+
 
 

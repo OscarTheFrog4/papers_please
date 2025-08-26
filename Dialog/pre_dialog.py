@@ -4,16 +4,9 @@ from Utils.Functions.dialog import dialog
 
 
 class PreDialog(Dialog):
-    def __init__(self, f_name, l_name, planet, has_dis, purpose, duration, day, event_occurred, loop, nexa, verdict):
-        super().__init__(f_name, l_name, planet, has_dis, purpose, duration, day, event_occurred, loop, nexa, verdict)
-
-        self.event_occurred = ""
-        wait(0, 30)
-        wait(2, 0)
-
-        dialog("inspector", "Papers, please")
 
     def event(self):
+        dialog("inspector", "Papers, please")
 
         match self.day:
             case 6:
@@ -43,7 +36,7 @@ class PreDialog(Dialog):
                     dialog("inspector", "Everyone knows you cut the red wire.")
                     wait(2, 1)
 
-                    if input("Which color of wire do you want to cut?: ") == "red":
+                    if input("Which color of wire do you want to cut?: ").lower() == "red":
                         wait(2, 1)
                         print("   /‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\\   ")
                         print("  /   * Detonation Disabled *   \\  ")
@@ -59,7 +52,7 @@ class PreDialog(Dialog):
                         dialog("inspector", "Glad that stupid bomb was dealt with.")
                         wait(2, 0)
                         dialog("inspector", "Idiot Khaosynths.")
-
+                        self.event_occurred = True
                     else:
                         wait(1, 0)
                         dialog("inspector", "...")
@@ -71,8 +64,7 @@ class PreDialog(Dialog):
                         wait(4, 0)
                         dialog("inspector", "*scoffs* ...Idiot.")
                         wait(2, 0)
-
-                    self.event_occurred = "dead"
+                        self.event_occurred = "dead"
 
             case 7:
                 if self.loop == 1:
@@ -86,8 +78,9 @@ class PreDialog(Dialog):
                     dialog("applicant", "But whatever, I believe we will make a solid team.")
                     wait(2, 1)
                     input("(Enter anything to continue): ")
-                    self.event_occurred = "continue"
-                elif self.loop > 2:
+                    self.event_occurred = "skip"
+
+                if self.event_occurred == "go ahead":
                     wait(2, 0)
                     dialog("applicant", "Talk and you die.")
                     wait(1, 0)
