@@ -2,7 +2,7 @@ from Utils.Functions.wait import wait
 
 
 class Decision:
-    def __init__(self, has_dis, nexa, day, loop, planet, event_occurred, citations, accepted_grant):
+    def __init__(self, has_dis, nexa, day, loop, planet, event_occurred, citations, accepted_grant, bought_hotkey):
         self.has_dis = has_dis
         self.nexa = nexa
         self.day = day
@@ -12,6 +12,7 @@ class Decision:
         self.verdict = ""
         self.citations = citations
         self.accepted_grant = accepted_grant
+        self.bought_hotkey = bought_hotkey
 
     def decide(self):
         # Ask player to accept or deny applicant
@@ -22,10 +23,24 @@ class Decision:
             while not self.verdict == "accept" and not self.verdict == "deny":
                 self.verdict = input("Answer only with 'accept' or 'deny': ").lower()
 
+        elif self.day >= 9 and self.bought_hotkey:
+            self.verdict = input("Accept (a), deny (d), or lace (l) applicant?: ").lower()
+            while not self.verdict == "a" and not self.verdict == "d" and not self.verdict == "l":
+                self.verdict = input("Answer only with 'a' (accept), 'd' (deny), or 'l' (lace): ").lower()
+            match self.verdict:
+                case "a":
+                    self.verdict = "accept"
+                case "d":
+                    self.verdict = "deny"
+                case "l":
+                    self.verdict = "lace"
+
         elif self.day >= 8:
             self.verdict = input("Accept, deny, or lace applicant?: ").lower()
             while not self.verdict == "accept" and not self.verdict == "deny" and not self.verdict == "lace":
                 self.verdict = input("Answer only with 'accept', 'deny', or 'lace': ").lower()
+
+
 
         # Evaluate player verdict
         wait(1, 1)
@@ -61,9 +76,7 @@ class Decision:
 
         if self.planet == "Melanor" and self.verdict == "accept":
             self.accepted_grant = True
-            print("This is the decision module where accepted_grant was just set to True!")
         elif self.planet == "Melanor" and self.verdict == "deny":
             self.accepted_grant = False
-            print("This is the decision module where accepted_grant was just set to False!")
 
         return self.nexa, self.verdict, self.citations, self.accepted_grant

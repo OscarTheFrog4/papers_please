@@ -7,7 +7,6 @@ class Permit(Documents):
 
         stutter()
 
-
         # Header
         print(f" ︵ ︵ ︵ ︵ ︵ ︵ ︵ ︵ ︵ ︵ ︵ ")
         print(f"(        ASTRAL PERMIT        )")

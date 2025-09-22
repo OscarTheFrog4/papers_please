@@ -17,25 +17,13 @@ class MidDialog(Dialog):
     def interrogate(self):
         wait(1.5, 2)
 
-        if self.f_name == "Robert":
-            dialog("inspector", "Purpose of visit?")
-            wait(1.5, 0)
-            dialog("applicant", "I was called for diplomatic purposes.")
-            wait(1.5, 0)
-            dialog("inspector", "Duration of stay?")
-            wait(1.5, 0)
-            dialog("applicant", "However long the discussions last.")
-
         # Ask for Name
-        elif self.day <= 2 or self.planet == "Nexus Harbor":
+        if self.day <= 2 or self.planet == "Nexus Harbor":
 
             dialog("inspector", "Name?")
             wait(1, 0)
 
-            # Print first name
             print(f"<< '{self.f_name} ", end="")
-
-            # Print last name
             print(f"{self.l_name}'")
 
 
@@ -88,11 +76,6 @@ class MidDialog(Dialog):
         return self.has_dis, self.event_occurred
 
     def event(self):
-
-        # print("This is MidDialog in the event function!")
-        # print(f"event_occurred = {self.event_occurred}")
-        # print(f"has_dis = {self.has_dis}")
-
         match self.day:
             case 2:
                 # Person begging to be let through

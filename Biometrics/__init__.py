@@ -1,4 +1,4 @@
-class Documents:
+class Biometrics:
     def __init__(self, f_name, l_name, planet, dob, exp, sex, pass_num, has_dis, purpose, duration, day, event_occurred):
         self.planet = planet
         self.f_name = f_name

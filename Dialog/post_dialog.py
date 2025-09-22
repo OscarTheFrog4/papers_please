@@ -17,7 +17,6 @@ class PostDialog(Dialog):
                 if self.event_occurred == "go ahead" and self.verdict == "deny":
                     wait(1, 1)
                     dialog("applicant", "Hey, what gives! Why deny?")
-                    print("<< ''")
                     wait(2, 0)
                     dialog("inspector", "Entry is prohibited for Foreigners")
                     wait(3, 0)

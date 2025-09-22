@@ -19,14 +19,12 @@ REMINDERS:
 
 IDEAS
     The player moves to a different inspection location with different polocies.
-
+        Have biometric scans show data line by line
     Mulitple different endings are possible.
 
     The Nexan defender turns out to be a Khaosynth.
 
     Have the Khaosytnhs try to persuade you to work with them The Khaosythsnns say that they are "oppressed"
-
-    Inspector booth upgrades
 
     Create a storyline consequence for denying Robert Grant
 
@@ -51,8 +49,13 @@ NEW GAME - CHOOSE YOUR OWN ADVENTURE
 
 
 BUGS
-    day 1 and 2 (female) false citations. Accept verdict was falsely citated
-    Nothing was visually wrong, but has_dis was True or "forgery"
+
+Find fingerprint, eye, and dna ascii art
+
+
+
+
+#
 
 
 
@@ -81,4 +84,30 @@ BUGS
 
 
 
-U+035F	   ͟	͟⎟╱〱
+
+
+
+
+"    ooO@####oo     "
+"  oo@@    ︵  OOo  "
+"oO#@    (( @))   Oo"
+"  #OOo    ︶   oO  "
+"      OOooooOO     "
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/
+╱

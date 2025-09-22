@@ -20,7 +20,10 @@ class ApplicantInfo:
         self.has_dis = False
 
         self.dob = f"{random.choice(creds.months)} {random.randint(1, 28)}, {random.randint(2910, 2970)}"
-        self.exp = f"{random.choice(creds.months)} {random.randint(1, 28)}, {random.randint(2990, 3010)}"
+
+        self.exp = f"{random.choice(creds.months)} {random.randint(1, 28)}, {random.randint(2988, 2998)}"
+        while int(self.exp[-4:]) == 2989:
+            self.exp = f"{random.choice(creds.months)} {random.randint(1, 28)}, {random.randint(2988, 2998)}"
 
         if self.sex == "M":
             self.f_name = random.choice(creds.b_names)
@@ -44,7 +47,6 @@ class ApplicantInfo:
                         self.has_dis = True
                 else:
                     self.planet = "Nexus Harbor"
-                    print("Planet was just set to Nexus Harbor in make_applicant")
 
         match self.day:
             case 1:
@@ -60,7 +62,8 @@ class ApplicantInfo:
                     self.event_occurred = "go ahead"
 
             case 4:
-                self.event_occurred = True
+                if self.loop > 3 and not self.event_occurred:
+                    self.event_occurred = "go ahead"
 
             case 5:
                 if self.loop > 2 and not self.event_occurred:

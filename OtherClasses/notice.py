@@ -37,6 +37,20 @@ class Notice:
             print("│ others waiting to take your  │")
             print("│ place.                       │")
             print("└──────────────────────────────┘")
+
+        if not self.accepted_grant and self.day == 9:
+            print("│ I must admit I am very       │")
+            print("│ dissapointed. Yesterday, you │")
+            print("│ denied Robert Grant. He was  │")
+            print("│ about to provide very        │")
+            print("│ important information for    │")
+            print("│ the Nexus Harbor planetary   │")
+            print("│ government. Let this not     │")
+            print("│ happen again, for there are  │")
+            print("│ others waiting to take your  │")
+            print("│ place.                       │")
+            print("└──────────────────────────────┘")
+
         else:
             for line in notices.get(self.day):
                 print(line)

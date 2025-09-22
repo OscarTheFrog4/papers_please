@@ -107,30 +107,22 @@ notices = {
 "│ instructed to lace forged    │",
 "│ passports with EMP tablets.  │",
 "└──────────────────────────────┘"
-)
+),
 
-}
-
-"│  │"
-"│  │"
-"│  │"
-"│  │"
-"│  │"
-"│  │"
-"│  │"
+9:(
+"│ You are being transferred to │",
+"│ a different inspection       │",
+"│ checkpoint. You have done    │",
+"│ well here, so the ministry   │",
+"│ has determined that you are  │",
+"│ fit for a more difficult to  │",
+"│ handle checkpoint known as   │",
+"│ Nova's Reach. There,         │",
+"│ applicants are verified      │",
+"│ using biometric              │",
+"│ identification rather than   │",
+"│ documents. Thank you for     │",
+"│ outstanding services, agent. │",
 "└──────────────────────────────┘"
-
-
-
-
-#
-#
-#
-#
-#
-#
-#
-#
-
-
-#
+)
+}

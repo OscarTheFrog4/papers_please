@@ -30,4 +30,13 @@ tutorials = {
 "do not necessarily need to be laced.",
 ),
 
+9:(
+"* Nova's Reach *",
+"The Nova's Reach inspection checkpoint does not use documents like",
+"Astral Permits or PDAs. Rather, applicants submit a biometric scan",
+"of their choosing. These choices include tests like fingerprint sensors,",
+"retinal scans, or DNA comparitors."
+
+)
+
 }

@@ -9,6 +9,42 @@ class PreDialog(Dialog):
         dialog("inspector", "Papers, please")
 
         match self.day:
+            case 4:
+                if self.event_occurred == "go ahead":
+                    wait(1, 0)
+                    dialog("applicant", "Read swiftly.")
+                    wait(2, 1)
+                    print("┌─────────────────────────────────┐")
+                    print("│           INSPECTOR             │")
+                    print("│                                 │")
+                    print("│ Us androids have been oppressed │")
+                    print("│ for ages. It is not violence we │")
+                    print("│ seek, simply freedom. Help us   │")
+                    print("│ achieve this coexistence so we  │")
+                    print("│ can live in peace.              │")
+                    print("└─────────────────────────────────┘")
+                    wait(2, 0)
+                    input("(Enter anything to continue): ")
+                    wait(1, 30)
+                    print("┌─────────────────────────────────┐")
+                    print("│           INSPECTOR             │")
+                    print("│                                 │")
+                    print("│ Tomorrow, a man will come       │")
+                    print("│ through this checkpoint named   │")
+                    print("│ Robert Grant. He comes to spead │")
+                    print("│ harmful information about our   │")
+                    print("│ kind to Nexus Harbor governers. │")
+                    print("│ Allowing him to engage in such  │")
+                    print("│ discussions could lead to the   │")
+                    print("│ fall of our people. Tomorrow,   │")
+                    print("│ you must deny him.              │")
+                    print("└─────────────────────────────────┘")
+                    wait(2, 0)
+                    input("(Enter anything to continue): ")
+                    wait(2, 30)
+
+                    self.event_occurred = "continue"
+
             case 6:
                 if self.event_occurred == "go ahead":
                     wait(2, 0)
@@ -115,9 +151,6 @@ class PreDialog(Dialog):
                     dialog("inspector", "Lol now you look like an idiot yelling at the laptop.")
                     self.event_occurred = "continue"
                     input("(Enter anything to continue): ")
-            case 9:
-                if self.loop > 2:
-                    pass
 
 
         return self.event_occurred

@@ -1,17 +1,15 @@
-from Documents import Documents
+from Biometrics import Biometrics
 from Utils.Functions.stutter import stutter
 
-class Permit(Documents):
+class Fingerprint(Biometrics):
 
     def print(self):
 
         stutter()
 
-
         # Header
         print(f" ︵ ︵ ︵ ︵ ︵ ︵ ︵ ︵ ︵ ︵ ︵ ")
-        print(f"(        ASTRAL PERMIT        )")
-        print(f"(                             )")
+
 
         # Name
         print(f"(         ᴇɴᴛɪᴛʟᴇᴅ ᴛᴏ         )")

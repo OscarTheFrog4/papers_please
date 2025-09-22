@@ -2,13 +2,16 @@ from Utils.Functions.wait import wait
 
 
 class Day:
-    def __init__(self, nexa, is_running, food, heat, event_occurred):
+    def __init__(self, nexa, is_running, food, heat, event_occurred, day, bought_hotkey):
 
+        self.event_occurred = None
         self.nexa = nexa
         self.is_running = is_running
         self.food = food
         self.heat = heat
         self.event_ocurred = event_occurred
+        self.day = day
+        self.bought_hotkey = bought_hotkey
 
         wait(2, 30)
 
@@ -32,7 +35,7 @@ class Day:
         else:
             print(f"You do not have enough money to buy {need}.")
             var -= 1
-            wait(2, 0)
+            wait(1, 0)
 
         if var == 0:
             print(f"You died of {cause}!")
@@ -70,10 +73,22 @@ class Day:
         self.nexa, self.food, self.is_running, self.event_occurred = self.needs("food", 7, self.food, self.nexa, "starvation", self.is_running, self.event_ocurred)
         self.nexa, self.heat, self.is_running, self.event_occurred = self.needs("heat", 5, self.heat, self.nexa, "the cold", self.is_running, self.event_ocurred)
 
-        input("(Enter anything to continue): ")
+
+        if self.day >= 8 and not self.bought_hotkey:
+            wait(1, 1)
+            print("A booth upgrade is available: You can enter 'a', 'd', or 'l' as a verdict")
+            print("rather than the full words of 'accept', 'deny', or 'lace.'")
+            wait(1, 0)
+            if input("Purchase upgrade for 10 nexas? (y/n): ") == "y":
+                self.bought_hotkey = True
+                self.nexa -= 10
+
+        else:
+            input("(Enter anything to continue): ")
+
         wait(0, 30)
 
-        return self.nexa, self.food, self.heat, self.is_running, self.event_ocurred
+        return self.nexa, self.food, self.heat, self.is_running, self.event_ocurred, self.bought_hotkey
 
 
 

@@ -1,5 +1,8 @@
 import time, random
 
+from Biometrics.fingerprint import Fingerprint
+from Biometrics.dna import DNA
+from Biometrics.retinal import Retinal
 from Dialog.mid_dialog import MidDialog
 from Dialog.post_dialog import PostDialog
 from Dialog.pre_dialog import PreDialog
@@ -17,7 +20,7 @@ import pygame
 def main():
 
     # Establish non-personal variables
-    day = 7
+    day = 1
     nexa = 0
     old_nexa = 0
     food = 3
@@ -28,10 +31,10 @@ def main():
     event_occurred = False
     verdict = None
     accepted_grant = None
+    bought_hotkey = False
 
-    sound_file = "Golden.mp3"
     pygame.mixer.init()
-    pygame.mixer.music.load(sound_file)
+    pygame.mixer.music.load("Utils/Data/snowfall.mp3")
     pygame.mixer.music.play()
 
     admin = input("Admin? Enter nothing for no, and what day you want to start at for yes: ")
@@ -46,7 +49,6 @@ def main():
     start_time = time.time()
 
     while is_running:
-
 
         # Establish Applicant Information
         get_info = ApplicantInfo(day, loop, event_occurred)
@@ -97,44 +99,52 @@ def main():
             wait(0, 30)
             loop += 1
             continue
+        
+        if day <= 8:
+            # Print passport
+            has_dis = Passport(f_name, l_name, planet, dob, exp, sex, pass_num, has_dis, purpose, duration, day, event_occurred).print()
+    
+            # Chance of applicant missing entry permit
+            if day >= 3 and not planet == "Nexus Harbor":
+                if random.randint(1, 10) == 1:
+                    has_dis = True
+                else:
+                    has_dis = Permit(f_name, l_name, planet, dob, exp, sex, pass_num, has_dis, purpose, duration, day, event_occurred).print()
+    
+            # Chance of applicant missing PDA
+            if day >= 4 and planet == "Nexus Harbor":
+                if random.randint(1, 10) == 1:
+                    has_dis = True
+                else:
+                    has_dis = PDA(f_name, l_name, planet, dob, exp, sex, pass_num, has_dis, purpose, duration, day, event_occurred).print()
+    
+            # Dialog after documents are presented, but before user enters a verdict
+    
+            has_dis, event_occurred = MidDialog(f_name, l_name, planet, has_dis, purpose, duration, day, event_occurred, loop, nexa, verdict).interrogate()
 
-        # Print passport
-        has_dis = Passport(f_name, l_name, planet, dob, exp, sex, pass_num, has_dis, purpose, duration, day, event_occurred).print()
-
-        # Chance of applicant missing entry permit
-        if day >= 3 and not planet == "Nexus Harbor":
-            if random.randint(1, 10) == 1:
-                has_dis = True
+        
+        else:
+            if random.randint(1, 3) == 15:
+                Fingerprint(f_name, l_name, planet, dob, exp, sex, pass_num, has_dis, purpose, duration, day, event_occurred).scan()
+            elif random.randint(1, 2) == 15:
+                Retinal(f_name, l_name, planet, dob, exp, sex, pass_num, has_dis, purpose, duration, day, event_occurred).scan()
             else:
-                has_dis = Permit(f_name, l_name, planet, dob, exp, sex, pass_num, has_dis, purpose, duration, day, event_occurred).print()
+                DNA(f_name, l_name, planet, dob, exp, sex, pass_num, has_dis, purpose, duration, day, event_occurred).scan()
 
-        # Chance of applicant missing PDA
-        if day >= 4 and planet == "Nexus Harbor":
-            if random.randint(1, 10) == 1:
-                has_dis = True
-            else:
-                has_dis = PDA(f_name, l_name, planet, dob, exp, sex, pass_num, has_dis, purpose, duration, day, event_occurred).print()
-
-        # Dialog after documents are presented, but before user enters a verdict
-
-        has_dis, event_occurred = MidDialog(f_name, l_name, planet, has_dis, purpose, duration, day, event_occurred, loop, nexa, verdict).interrogate()
         has_dis, event_occurred = MidDialog(f_name, l_name, planet, has_dis, purpose, duration, day, event_occurred, loop, nexa, verdict).event()
-
         # Decision
-        nexa, verdict, citations, accepted_grant = Decision(has_dis, nexa, day, loop, planet, event_occurred, citations, accepted_grant).decide()
-        print(f"This is main.py right after the Decision function!")
-        print(f"accepted_grant is {accepted_grant}")
+        nexa, verdict, citations, accepted_grant = Decision(has_dis, nexa, day, loop, planet, event_occurred, citations, accepted_grant, bought_hotkey).decide()
+
         # Dialog after the player enters their verdict
         event_occurred, nexa = PostDialog(f_name, l_name, planet, has_dis, purpose, duration, day, event_occurred, loop, nexa, verdict).remark()
 
         wait(1, 30)
 
-
         # Daily Evaluation
         loop += 1
-        if time.time() - start_time > 1 and event_occurred == True:
+        if time.time() - start_time > 60 and event_occurred == True:
 
-            nexa, food, heat, is_running, event_occurred = Day(nexa, is_running, food, heat, event_occurred).evaluate_day()
+            nexa, food, heat, is_running, event_occurred, bought_hotkey = Day(nexa, is_running, food, heat, event_occurred, day, bought_hotkey).evaluate_day()
 
             # Reset Day
             event_occurred = False
@@ -148,5 +158,4 @@ def main():
             start_time = time.time()
 
 if __name__ == "__main__":
-
     main()

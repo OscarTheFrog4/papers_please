@@ -16,6 +16,8 @@ class Passport(Documents):
 
         wait(1.5, 0)
 
+        print(f"(Current date: September {self.day + 5}, 2989)")
+
         # Header
         print("┌──────────────────────────────────┐ ")
         print("│            STELLAPASS            │ ")
@@ -47,33 +49,23 @@ class Passport(Documents):
         print(f"│   _ _ _ _ _ _ _ _ _ _ _          │")
 
         # Portrait
-        if self.sex == "M":
-            for line in random.choice(faces.m_portraits):
-                print(f"│  | {line}{"|":9} │")
+        if random.randint(1, 10) == 1:
+            portraits = faces.m_portraits if self.sex == "F" else faces.f_portraits
         else:
-            for line in random.choice(faces.f_portraits):
-                print(f"│  | {line}{"|":9} │")
+            portraits = faces.m_portraits if self.sex == "M" else faces.f_portraits
+        for line in random.choice(portraits):
+            print(f"│  | {line}{'|':9} │")
 
         # Other Passport Information
         print(f"│   ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾          │")
         print(f"│ [DOB] {self.dob:27}│")
+        print(f"│ [SEX] {self.sex:27}│")
         print(f"│ [EXP] {self.exp:27}│")
-
-        # Chance for wrong sex
-        if random.randint(1, 10) == 1 and self.day >= 3:
-            if self.sex == "M":
-                self.fake_info = "F"
-            else:
-                self.fake_info = "M"
-            print(f"│ [SEX] {self.fake_info:27}│")
-            self.has_dis = "forgery"
-        # Correct sex
-        else:
-            print(f"│ [SEX] {self.sex:27}│")
-
+        if 2989 > int(self.exp[-4:]):
+            self.has_dis = True
 
         # Chance for wrong planet
-        if random.randint(1, 10) == 1 and self.day >= 3:
+        if random.random() < 0.1 and self.day >= 3:
             fake_info = self.planet
             while fake_info == self.planet:
                 fake_info = random.choice(creds.planets)
@@ -93,12 +85,7 @@ class Passport(Documents):
                     self.fake_info += random.choice(list(string.ascii_uppercase + string.digits))
                 self.fake_info = self.fake_info[0:5] + "-" + self.fake_info[6:11]
             print(f"{self.fake_info:11} │")
-
             self.has_dis = "forgery"
-
-
-                # Try importing applicant_info and taking the pass_num attribute
-
 
         # Correct passport number
         else:
