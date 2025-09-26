@@ -13,3 +13,14 @@ class DNA(Biometrics):
         for line in dna[0]:
             print(line)
             wait(1, 0)
+            print("Incoming Biometric Scan:")
+            wait(2)
+            for line in h_fingerprints[self.id]:
+                print(line)
+            wait(1, 2)
+            print(f"Fingerprint on Record for {self.l_name}, {self.f_name}:")
+            for line in h_fingerprints[self.id]:
+                print(line)
+
+        return self.has_dis
+
