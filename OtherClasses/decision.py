@@ -44,7 +44,6 @@ class Decision:
 
         # Evaluate player verdict
         wait(1, 1)
-
         if (self.verdict == "accept" and not self.has_dis) or (self.verdict == "deny" and self.has_dis):
             self.nexa += 2
         elif self.verdict == "lace" and self.has_dis == "forgery":

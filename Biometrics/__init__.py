@@ -13,3 +13,4 @@ class Biometrics:
         self.day = day
         self.event_occurred = event_occurred
         self.fake_info = ""
+        self.id = None

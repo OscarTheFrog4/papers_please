@@ -11,11 +11,8 @@ faces = Utils.Data.faces
 
 
 class Retinal(Biometrics):
-
-    def print(self):
-
+    def scan(self):
         wait(1.5, 0)
-
         print(f"(Current date: September {self.day + 5}, 2989)")
 
         # Header

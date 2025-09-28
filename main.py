@@ -119,19 +119,19 @@ def main():
                     has_dis = PDA(f_name, l_name, planet, dob, exp, sex, pass_num, has_dis, purpose, duration, day, event_occurred).print()
     
             # Dialog after documents are presented, but before user enters a verdict
-    
             has_dis, event_occurred = MidDialog(f_name, l_name, planet, has_dis, purpose, duration, day, event_occurred, loop, nexa, verdict).interrogate()
-
         
         else:
-            if random.randint(1, 3) == 15:
-                Fingerprint(f_name, l_name, planet, dob, exp, sex, pass_num, has_dis, purpose, duration, day, event_occurred).scan()
-            elif random.randint(1, 2) == 15:
-                Retinal(f_name, l_name, planet, dob, exp, sex, pass_num, has_dis, purpose, duration, day, event_occurred).scan()
+            if random.randint(1, 1) == 1:
+                has_dis = Fingerprint(f_name, l_name, planet, dob, exp, sex, pass_num, has_dis, purpose, duration, day, event_occurred).scan()
+
+            elif random.randint(1, 2) == 1:
+                has_dis = Retinal(f_name, l_name, planet, dob, exp, sex, pass_num, has_dis, purpose, duration, day, event_occurred).scan()
             else:
-                DNA(f_name, l_name, planet, dob, exp, sex, pass_num, has_dis, purpose, duration, day, event_occurred).scan()
+                has_dis = DNA(f_name, l_name, planet, dob, exp, sex, pass_num, has_dis, purpose, duration, day, event_occurred).scan()
 
         has_dis, event_occurred = MidDialog(f_name, l_name, planet, has_dis, purpose, duration, day, event_occurred, loop, nexa, verdict).event()
+
         # Decision
         nexa, verdict, citations, accepted_grant = Decision(has_dis, nexa, day, loop, planet, event_occurred, citations, accepted_grant, bought_hotkey).decide()
 
